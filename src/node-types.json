@@ -1,0 +1,688 @@
+[
+  {
+    "type": "app",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "uplc",
+            "named": true
+          }
+        ]
+      },
+      "function": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "uplc",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "builtin",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "defaultFun",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "builtinValue",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "case",
+    "named": true,
+    "fields": {
+      "handler": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "uplc",
+            "named": true
+          }
+        ]
+      },
+      "target": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "uplc",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "con",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "defaultUniTypes",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "builtinValue",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "constr",
+    "named": true,
+    "fields": {
+      "fields": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "uplc",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "defaultFun",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "defaultUniTypes",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "delay",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "uplc",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "force",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "uplc",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lam",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "uplc",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "lamName",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "lamName",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "uplc",
+    "named": true,
+    "root": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "app",
+          "named": true
+        },
+        {
+          "type": "builtin",
+          "named": true
+        },
+        {
+          "type": "case",
+          "named": true
+        },
+        {
+          "type": "con",
+          "named": true
+        },
+        {
+          "type": "constr",
+          "named": true
+        },
+        {
+          "type": "delay",
+          "named": true
+        },
+        {
+          "type": "error",
+          "named": true
+        },
+        {
+          "type": "force",
+          "named": true
+        },
+        {
+          "type": "lam",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "addInteger",
+    "named": false
+  },
+  {
+    "type": "andByteString",
+    "named": false
+  },
+  {
+    "type": "appendByteString",
+    "named": false
+  },
+  {
+    "type": "appendString",
+    "named": false
+  },
+  {
+    "type": "bData",
+    "named": false
+  },
+  {
+    "type": "blake2b_224",
+    "named": false
+  },
+  {
+    "type": "blake2b_256",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_add",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_compress",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_element",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_equal",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_hashToGroup",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_neg",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_scalarMul",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G1_uncompress",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_add",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_compress",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_element",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_equal",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_hashToGroup",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_neg",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_scalarMul",
+    "named": false
+  },
+  {
+    "type": "bls12_381_G2_uncompress",
+    "named": false
+  },
+  {
+    "type": "bls12_381_finalVerify",
+    "named": false
+  },
+  {
+    "type": "bls12_381_millerLoop",
+    "named": false
+  },
+  {
+    "type": "bls12_381_mlresult",
+    "named": false
+  },
+  {
+    "type": "bls12_381_mulMlResult",
+    "named": false
+  },
+  {
+    "type": "bool",
+    "named": false
+  },
+  {
+    "type": "builtin",
+    "named": false
+  },
+  {
+    "type": "byteStringToInteger",
+    "named": false
+  },
+  {
+    "type": "bytestring",
+    "named": false
+  },
+  {
+    "type": "case",
+    "named": false
+  },
+  {
+    "type": "chooseData",
+    "named": false
+  },
+  {
+    "type": "chooseList",
+    "named": false
+  },
+  {
+    "type": "chooseUnit",
+    "named": false
+  },
+  {
+    "type": "complementByteString",
+    "named": false
+  },
+  {
+    "type": "con",
+    "named": false
+  },
+  {
+    "type": "consByteString",
+    "named": false
+  },
+  {
+    "type": "constr",
+    "named": false
+  },
+  {
+    "type": "constrData",
+    "named": false
+  },
+  {
+    "type": "countSetBits",
+    "named": false
+  },
+  {
+    "type": "data",
+    "named": false
+  },
+  {
+    "type": "decodeUtf8",
+    "named": false
+  },
+  {
+    "type": "delay",
+    "named": false
+  },
+  {
+    "type": "divideInteger",
+    "named": false
+  },
+  {
+    "type": "encodeUtf8",
+    "named": false
+  },
+  {
+    "type": "equalsByteString",
+    "named": false
+  },
+  {
+    "type": "equalsData",
+    "named": false
+  },
+  {
+    "type": "equalsInteger",
+    "named": false
+  },
+  {
+    "type": "equalsString",
+    "named": false
+  },
+  {
+    "type": "error",
+    "named": true
+  },
+  {
+    "type": "expModInteger",
+    "named": false
+  },
+  {
+    "type": "findFirstSetBit",
+    "named": false
+  },
+  {
+    "type": "force",
+    "named": false
+  },
+  {
+    "type": "fstPair",
+    "named": false
+  },
+  {
+    "type": "headList",
+    "named": false
+  },
+  {
+    "type": "iData",
+    "named": false
+  },
+  {
+    "type": "ifThenElse",
+    "named": false
+  },
+  {
+    "type": "indexByteString",
+    "named": false
+  },
+  {
+    "type": "integer",
+    "named": false
+  },
+  {
+    "type": "integerToByteString",
+    "named": false
+  },
+  {
+    "type": "keccak_256",
+    "named": false
+  },
+  {
+    "type": "lam",
+    "named": false
+  },
+  {
+    "type": "lengthOfByteString",
+    "named": false
+  },
+  {
+    "type": "lessThanByteString",
+    "named": false
+  },
+  {
+    "type": "lessThanEqualsByteString",
+    "named": false
+  },
+  {
+    "type": "lessThanEqualsInteger",
+    "named": false
+  },
+  {
+    "type": "lessThanInteger",
+    "named": false
+  },
+  {
+    "type": "list",
+    "named": false
+  },
+  {
+    "type": "listData",
+    "named": false
+  },
+  {
+    "type": "mapData",
+    "named": false
+  },
+  {
+    "type": "mkCons",
+    "named": false
+  },
+  {
+    "type": "mkNilData",
+    "named": false
+  },
+  {
+    "type": "mkNilPairData",
+    "named": false
+  },
+  {
+    "type": "mkPairData",
+    "named": false
+  },
+  {
+    "type": "modInteger",
+    "named": false
+  },
+  {
+    "type": "multiplyInteger",
+    "named": false
+  },
+  {
+    "type": "nullList",
+    "named": false
+  },
+  {
+    "type": "orByteString",
+    "named": false
+  },
+  {
+    "type": "pair",
+    "named": false
+  },
+  {
+    "type": "quotientInteger",
+    "named": false
+  },
+  {
+    "type": "readBit",
+    "named": false
+  },
+  {
+    "type": "remainderInteger",
+    "named": false
+  },
+  {
+    "type": "replicateByte",
+    "named": false
+  },
+  {
+    "type": "ripemd_160",
+    "named": false
+  },
+  {
+    "type": "rotateByteString",
+    "named": false
+  },
+  {
+    "type": "serialiseData",
+    "named": false
+  },
+  {
+    "type": "sha2_256",
+    "named": false
+  },
+  {
+    "type": "sha3_256",
+    "named": false
+  },
+  {
+    "type": "shiftByteString",
+    "named": false
+  },
+  {
+    "type": "sliceByteString",
+    "named": false
+  },
+  {
+    "type": "sndPair",
+    "named": false
+  },
+  {
+    "type": "string",
+    "named": false
+  },
+  {
+    "type": "subtractInteger",
+    "named": false
+  },
+  {
+    "type": "tailList",
+    "named": false
+  },
+  {
+    "type": "trace",
+    "named": false
+  },
+  {
+    "type": "unBData",
+    "named": false
+  },
+  {
+    "type": "unConstrData",
+    "named": false
+  },
+  {
+    "type": "unIData",
+    "named": false
+  },
+  {
+    "type": "unListData",
+    "named": false
+  },
+  {
+    "type": "unMapData",
+    "named": false
+  },
+  {
+    "type": "unit",
+    "named": false
+  },
+  {
+    "type": "variable",
+    "named": true
+  },
+  {
+    "type": "verifyEcdsaSecp256k1Signature",
+    "named": false
+  },
+  {
+    "type": "verifyEd25519Signature",
+    "named": false
+  },
+  {
+    "type": "verifySchnorrSecp256k1Signature",
+    "named": false
+  },
+  {
+    "type": "writeBits",
+    "named": false
+  },
+  {
+    "type": "xorByteString",
+    "named": false
+  }
+]

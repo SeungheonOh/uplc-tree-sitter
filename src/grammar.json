@@ -1,0 +1,767 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "uplc",
+  "rules": {
+    "uplc": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "variable"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "con"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "builtin"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "lam"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "app"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "delay"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "force"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "error"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "constr"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "case"
+        }
+      ]
+    },
+    "variable": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9!]+"
+    },
+    "con": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "con"
+            },
+            {
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "defaultUniTypes"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "value",
+              "content": {
+                "type": "SYMBOL",
+                "name": "builtinValue"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "builtinValue": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[_@a-zA-Z!0-9\\xC0-\\xD6\\xD8-\\xDE\\xDF-\\xF6\\xF8-\\xFF\\n:-]+"
+      }
+    },
+    "defaultUniTypes": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "integer"
+        },
+        {
+          "type": "STRING",
+          "value": "bytestring"
+        },
+        {
+          "type": "STRING",
+          "value": "string"
+        },
+        {
+          "type": "STRING",
+          "value": "unit"
+        },
+        {
+          "type": "STRING",
+          "value": "bool"
+        },
+        {
+          "type": "STRING",
+          "value": "list"
+        },
+        {
+          "type": "STRING",
+          "value": "pair"
+        },
+        {
+          "type": "STRING",
+          "value": "data"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_element"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_element"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_mlresult"
+        }
+      ]
+    },
+    "builtin": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "builtin"
+            },
+            {
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "defaultFun"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "defaultFun": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "addInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "subtractInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "multiplyInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "divideInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "quotientInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "remainderInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "modInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "equalsInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "lessThanInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "lessThanEqualsInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "appendByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "consByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "sliceByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "lengthOfByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "indexByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "equalsByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "lessThanByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "lessThanEqualsByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "sha2_256"
+        },
+        {
+          "type": "STRING",
+          "value": "sha3_256"
+        },
+        {
+          "type": "STRING",
+          "value": "blake2b_256"
+        },
+        {
+          "type": "STRING",
+          "value": "verifyEd25519Signature"
+        },
+        {
+          "type": "STRING",
+          "value": "verifyEcdsaSecp256k1Signature"
+        },
+        {
+          "type": "STRING",
+          "value": "verifySchnorrSecp256k1Signature"
+        },
+        {
+          "type": "STRING",
+          "value": "appendString"
+        },
+        {
+          "type": "STRING",
+          "value": "equalsString"
+        },
+        {
+          "type": "STRING",
+          "value": "encodeUtf8"
+        },
+        {
+          "type": "STRING",
+          "value": "decodeUtf8"
+        },
+        {
+          "type": "STRING",
+          "value": "ifThenElse"
+        },
+        {
+          "type": "STRING",
+          "value": "chooseUnit"
+        },
+        {
+          "type": "STRING",
+          "value": "trace"
+        },
+        {
+          "type": "STRING",
+          "value": "fstPair"
+        },
+        {
+          "type": "STRING",
+          "value": "sndPair"
+        },
+        {
+          "type": "STRING",
+          "value": "chooseList"
+        },
+        {
+          "type": "STRING",
+          "value": "mkCons"
+        },
+        {
+          "type": "STRING",
+          "value": "headList"
+        },
+        {
+          "type": "STRING",
+          "value": "tailList"
+        },
+        {
+          "type": "STRING",
+          "value": "nullList"
+        },
+        {
+          "type": "STRING",
+          "value": "chooseData"
+        },
+        {
+          "type": "STRING",
+          "value": "constrData"
+        },
+        {
+          "type": "STRING",
+          "value": "mapData"
+        },
+        {
+          "type": "STRING",
+          "value": "listData"
+        },
+        {
+          "type": "STRING",
+          "value": "iData"
+        },
+        {
+          "type": "STRING",
+          "value": "bData"
+        },
+        {
+          "type": "STRING",
+          "value": "unConstrData"
+        },
+        {
+          "type": "STRING",
+          "value": "unMapData"
+        },
+        {
+          "type": "STRING",
+          "value": "unListData"
+        },
+        {
+          "type": "STRING",
+          "value": "unIData"
+        },
+        {
+          "type": "STRING",
+          "value": "unBData"
+        },
+        {
+          "type": "STRING",
+          "value": "equalsData"
+        },
+        {
+          "type": "STRING",
+          "value": "serialiseData"
+        },
+        {
+          "type": "STRING",
+          "value": "mkPairData"
+        },
+        {
+          "type": "STRING",
+          "value": "mkNilData"
+        },
+        {
+          "type": "STRING",
+          "value": "mkNilPairData"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_add"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_neg"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_scalarMul"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_equal"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_hashToGroup"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_compress"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G1_uncompress"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_add"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_neg"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_scalarMul"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_equal"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_hashToGroup"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_compress"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_G2_uncompress"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_millerLoop"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_mulMlResult"
+        },
+        {
+          "type": "STRING",
+          "value": "bls12_381_finalVerify"
+        },
+        {
+          "type": "STRING",
+          "value": "keccak_256"
+        },
+        {
+          "type": "STRING",
+          "value": "blake2b_224"
+        },
+        {
+          "type": "STRING",
+          "value": "integerToByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "byteStringToInteger"
+        },
+        {
+          "type": "STRING",
+          "value": "andByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "orByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "xorByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "complementByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "readBit"
+        },
+        {
+          "type": "STRING",
+          "value": "writeBits"
+        },
+        {
+          "type": "STRING",
+          "value": "replicateByte"
+        },
+        {
+          "type": "STRING",
+          "value": "shiftByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "rotateByteString"
+        },
+        {
+          "type": "STRING",
+          "value": "countSetBits"
+        },
+        {
+          "type": "STRING",
+          "value": "findFirstSetBit"
+        },
+        {
+          "type": "STRING",
+          "value": "ripemd_160"
+        },
+        {
+          "type": "STRING",
+          "value": "expModInteger"
+        }
+      ]
+    },
+    "lam": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "lam"
+            },
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "lamName"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "body",
+              "content": {
+                "type": "SYMBOL",
+                "name": "uplc"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "lamName": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[_@a-zA-Z!0-9\\xC0-\\xD6\\xD8-\\xDE\\xDF-\\xF6\\xF8-\\xFF\\n:-]+"
+      }
+    },
+    "app": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "function",
+              "content": {
+                "type": "SYMBOL",
+                "name": "uplc"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "argument",
+              "content": {
+                "type": "SYMBOL",
+                "name": "uplc"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "delay": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "delay"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "uplc"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "force": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "force"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "uplc"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "error": {
+      "type": "STRING",
+      "value": "(error)"
+    },
+    "constr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "constr"
+            },
+            {
+              "type": "FIELD",
+              "name": "constructor",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[0-9]+"
+                }
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "fields",
+              "content": {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "uplc"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "case": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "case"
+            },
+            {
+              "type": "FIELD",
+              "name": "target",
+              "content": {
+                "type": "SYMBOL",
+                "name": "uplc"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "handler",
+              "content": {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "uplc"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
