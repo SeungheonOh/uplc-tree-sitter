@@ -35,8 +35,8 @@ module.exports = grammar({
       $.constr,
       $.case,
     ),
-    variable: ($)=> /[a-zA-Z0-9!]+/,
-    con: ($)=> wrappedSeq("con", field("type", $.defaultUniTypes), field("value", $.builtinValue)),
+    variable: ($) => /[a-zA-Z0-9!]+/,
+    con: ($) => wrappedSeq("con", field("type", $.defaultUniTypes), field("value", $.builtinValue)),
     builtinValue: ($) => all,
     defaultUniTypes: ($) => choice(
       "integer",
@@ -53,7 +53,7 @@ module.exports = grammar({
       // figure out ,uniF `juxtPrettyM` uniA
     ),
 
-    builtin: ($)=> wrappedSeq("builtin", field("type", $.defaultFun)),
+    builtin: ($) => wrappedSeq("builtin", field("type", $.defaultFun)),
     defaultFun: ($) => choice(
       "addInteger",
       "subtractInteger",
@@ -144,14 +144,14 @@ module.exports = grammar({
       "ripemd_160",
       "expModInteger",
     ),
-    lam: ($)=> wrappedSeq("lam", field("name", $.lamName), field("body", $.uplc)),
-    lamName: ($)=> all,
+    lam: ($) => wrappedSeq("lam", field("name", $.lamName), field("body", $.uplc)),
+    lamName: ($) => /[a-zA-Z!0-9\`]+/,
 
-    app: ($)=> bwrappedSeq(field("function", $.uplc), field("argument", $.uplc)),
-    delay: ($)=> wrappedSeq("delay", $.uplc),
-    force: ($)=> wrappedSeq("force", $.uplc),
-    error: ($)=> "(error)",
-    constr: ($)=> wrappedSeq("constr", field("constructor", token(/[0-9]+/)), field("fields", repeat1($.uplc))),
-    "case": ($)=> wrappedSeq("case", field("target", $.uplc), field("handler", repeat1($.uplc))),
+    app: ($) => bwrappedSeq(field("function", $.uplc), field("argument", $.uplc)),
+    delay: ($) => wrappedSeq("delay", $.uplc),
+    force: ($) => wrappedSeq("force", $.uplc),
+    error: ($) => "(error)",
+    constr: ($) => wrappedSeq("constr", field("constructor", token(/[0-9]+/)), field("fields", repeat1($.uplc))),
+    "case": ($) => wrappedSeq("case", field("target", $.uplc), field("handler", repeat1($.uplc))),
   },
 });

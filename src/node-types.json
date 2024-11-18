@@ -42,11 +42,6 @@
     }
   },
   {
-    "type": "builtinValue",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "case",
     "named": true,
     "fields": {
@@ -179,11 +174,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "lamName",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "uplc",
@@ -370,6 +360,10 @@
     "named": false
   },
   {
+    "type": "builtinValue",
+    "named": true
+  },
+  {
     "type": "byteStringToInteger",
     "named": false
   },
@@ -504,6 +498,10 @@
   {
     "type": "lam",
     "named": false
+  },
+  {
+    "type": "lamName",
+    "named": true
   },
   {
     "type": "lengthOfByteString",

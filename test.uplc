@@ -1,10 +1,36 @@
-(force
+[
+  [
+    (lam
+      mySub!2
+      (lam
+        mySub!1
+        [
+          [
+            (builtin subtractInteger)
+            [ [ (builtin subtractInteger) mySub!2 ] mySub!1 ]
+          ]
+          mySub!1
+        ]
+      )
+    )
+    (con integer 30)
+  ]
+  [
+    [
+      (lam
+        myAdd!2
+        (lam
+          myAdd!1
           [
             [
-              (lam i!0 (lam i!0 i!1)) (delay (con data 10))
+              (builtin addInteger) [ [ (builtin addInteger) myAdd!2 ] myAdd!2 ]
             ]
-            (delay
-              [ [ (builtin addInteger) (con integer 20) ] (con integer 20) ]
-            )
+            myAdd!1
           ]
         )
+      )
+      (con integer 10)
+    ]
+    (con integer 20)
+  ]
+]

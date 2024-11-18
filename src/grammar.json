@@ -571,11 +571,8 @@
       ]
     },
     "lamName": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "[_@a-zA-Z!0-9\\xC0-\\xD6\\xD8-\\xDE\\xDF-\\xF6\\xF8-\\xFF\\n:-]+"
-      }
+      "type": "PATTERN",
+      "value": "[a-zA-Z!0-9\\`]+"
     },
     "app": {
       "type": "SEQ",
